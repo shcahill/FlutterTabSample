@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage>
         title: Text('Tab Sample'),
         bottom: TabBar(
           controller: _controller,
-//        tabs: _buildSimpleTabs(), // (1)一般的なタブ
+//          tabs: _buildSimpleTabs(), // (1)一般的なタブ
 //        tabs: _buildCustomTabsWithError(), // (2)Iconを[Image.asset]に変えるとうまくいかない
           tabs: _buildCustomTabs(), // (3)[AnimatedBuilder]を使って[Tab]を生成
         ),
@@ -73,14 +73,14 @@ class _MyHomePageState extends State<MyHomePage>
   /// (3)[AnimatedBuilder]を使ってTabを生成
   List<Widget> _buildCustomTabs() {
     return [
-      _buildAnimatedTab(Tab(icon: Image.asset('images/soccer.png')), 0),
-      _buildAnimatedTab(Tab(icon: Image.asset('images/rugby.png')), 1),
+      Tab(child: _buildAnimatedWidget(Image.asset('images/soccer.png'), 0)),
+      Tab(child: _buildAnimatedWidget(Image.asset('images/rugby.png'), 1)),
     ];
   }
 
   /// [AnimatedBuilder]でラップすることにより、タブの位置に応じて[child]のopacityを変化させます。
   /// [index]はタブのインデックスです
-  Widget _buildAnimatedTab(Widget child, int index) {
+  Widget _buildAnimatedWidget(Widget child, int index) {
     return AnimatedBuilder(
       animation: _controller.animation,
       builder: (_, __) {
